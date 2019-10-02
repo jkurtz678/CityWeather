@@ -3,16 +3,20 @@ import open_weather from "../api/open_weather.js";
 import SearchForm from "./SearchForm";
 import WeatherCard from "./WeatherCard";
 import { kelvToFahr } from "../utils";
+import "./App.css";
 
 class App extends React.Component {
-	state = {
-		temp: "",
-		city: "",
-		weather: "",
-		loading: false,
-		error: false,
-		shouldHide: true
-	};
+	constructor() {
+		super();
+		this.state = {
+			temp: "",
+			city: "",
+			weather: "",
+			loading: false,
+			error: false,
+			shouldHide: true
+		};
+	}
 
 	onSearchSubmit = async search_term => {
 		this.setState({ loading: true, error: false, shouldHide: false });
