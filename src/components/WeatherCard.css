@@ -2,8 +2,14 @@ div.ui.weather-card {
 	margin-top: 50px;
 	max-width: 300px;
 	height: 280px;
+	font-family: 'Nunito', sans-serif !important;
+	visibility: visible;
+	opacity: 1;
+	transition: visibility 0s, opacity 0.5s;
+
 }
 
 div.ui.hidden {
-	display: none;
+	visibility: hidden;
+	opacity: 0;
 }

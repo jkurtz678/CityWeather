@@ -3,7 +3,6 @@ import open_weather from "../api/open_weather.js";
 import SearchForm from "./SearchForm";
 import WeatherCard from "./WeatherCard";
 import { kelvToFahr } from "../utils";
-import "./App.css";
 
 class App extends React.Component {
 	constructor() {
