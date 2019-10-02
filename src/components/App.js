@@ -5,10 +5,17 @@ import WeatherCard from "./WeatherCard";
 import { kelvToFahr } from "../utils";
 
 class App extends React.Component {
-	state = { temp: "", city: "", weather: "", loading: false, error: false };
+	state = {
+		temp: "",
+		city: "",
+		weather: "",
+		loading: false,
+		error: false,
+		shouldHide: true
+	};
 
 	onSearchSubmit = async search_term => {
-		this.setState({ loading: true, error: false });
+		this.setState({ loading: true, error: false, shouldHide: false });
 		try {
 			const response = await open_weather.get("/data/2.5/weather", {
 				params: {
@@ -16,18 +23,19 @@ class App extends React.Component {
 					APPID: `a7817f829568ccdd73a6f2aa82cb9ae4`
 				}
 			});
-			//console.log(response.data);
+			console.log(response.data.weather[0].main);
 			const temp_fahr = kelvToFahr(
 				parseInt(response.data.main.temp)
 			).toFixed(1);
 			this.setState({
 				temp: temp_fahr,
 				city: response.data.name,
+				weather: response.data.weather[0].main,
 				loading: false,
 				error: false
 			});
 		} catch (error) {
-			this.setState({error: true, loading: false});
+			this.setState({ error: true, loading: false });
 		}
 		//this.setState({temp: 10});
 	};
@@ -39,8 +47,10 @@ class App extends React.Component {
 				<WeatherCard
 					temp={this.state.temp}
 					city={this.state.city}
+					weather={this.state.weather}
 					loading={this.state.loading}
 					error={this.state.error}
+					shouldHide={this.state.shouldHide}
 				/>
 			</div>
 		);
